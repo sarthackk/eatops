@@ -363,6 +363,237 @@ a{color:inherit;text-decoration:none;}
 }
 
 /* ============================================================
+   FLOW — one order, end to end.
+   The fast-comprehension section: what EatOps is, without reading.
+   Opaque, so it covers the fixed 3D stage.
+   ============================================================ */
+.flow{
+  position:relative;z-index:3;
+  background:var(--canopy-2);
+  padding:clamp(76px,10vw,124px) 0;
+  border-top:1px solid rgba(255,255,255,.07);
+  border-bottom:1px solid rgba(255,255,255,.07);
+  overflow:hidden;
+}
+.flow::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 50% at 50% 30%,rgba(166,196,124,.07),transparent 70%);
+}
+.flow .container{position:relative;z-index:1;}
+.flow-head{max-width:660px;margin-bottom:clamp(44px,6vw,72px);}
+.flow-head h2{
+  font-family:var(--fd);font-weight:800;
+  font-size:clamp(30px,5vw,58px);line-height:1.04;
+  letter-spacing:-.032em;margin-bottom:16px;text-wrap:balance;
+}
+.flow-head h2 em{font-style:italic;color:var(--signal);}
+.flow-head p{font-size:17px;line-height:1.7;color:rgba(251,250,246,.66);max-width:52ch;}
+
+.flow-rail{display:flex;align-items:flex-start;justify-content:center;gap:0;}
+.flow-step{
+  flex:0 0 auto;width:252px;
+  display:flex;flex-direction:column;align-items:center;
+  transition:opacity .7s var(--ease),transform .7s var(--ease);
+}
+.js-reveal .flow-step{opacity:0;transform:translateY(26px);}
+.flow.in .flow-rail > *:nth-child(1){transition-delay:0s;}
+.flow.in .flow-rail > *:nth-child(2){transition-delay:.34s;}
+.flow.in .flow-rail > *:nth-child(3){transition-delay:.5s;}
+.flow.in .flow-rail > *:nth-child(4){transition-delay:.84s;}
+.flow.in .flow-rail > *:nth-child(5){transition-delay:1s;}
+.flow.in .flow-step{opacity:1;transform:none;}
+
+.flow-num{
+  font-family:var(--fm);font-size:9px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--signal);margin-bottom:14px;
+}
+.flow-cap{text-align:center;margin-top:20px;}
+.flow-cap b{
+  display:block;font-family:var(--fd);font-weight:700;font-size:16px;
+  color:var(--void);margin-bottom:5px;letter-spacing:-.01em;
+}
+.flow-cap span{display:block;font-size:13px;line-height:1.55;color:rgba(251,250,246,.55);}
+
+/* connector */
+.flow-link{
+  flex:1 1 auto;min-width:34px;max-width:96px;height:2px;
+  position:relative;margin:0 6px;align-self:flex-start;
+  margin-top:230px;   /* meets the vertical centre of the 336px screens */
+  background:linear-gradient(90deg,rgba(166,196,124,.1),rgba(166,196,124,.4),rgba(166,196,124,.1));
+  transition:opacity .6s var(--ease);
+}
+.js-reveal .flow-link{opacity:0;}
+.js-reveal .flow.in .flow-link{opacity:1;}
+.flow-link::after{
+  content:'';position:absolute;top:50%;right:-1px;
+  width:6px;height:6px;border-radius:50%;background:var(--signal);
+  transform:translateY(-50%);box-shadow:0 0 8px rgba(166,196,124,.8);
+}
+.flow-pulse{
+  position:absolute;top:50%;left:0;width:7px;height:7px;border-radius:50%;
+  background:#D8EEBE;transform:translateY(-50%);
+  box-shadow:0 0 10px rgba(216,238,190,.9);
+  animation:flowpulse 2.4s var(--ease) infinite;
+}
+@keyframes flowpulse{
+  0%{left:0;opacity:0;}
+  15%{opacity:1;}
+  85%{opacity:1;}
+  100%{left:100%;opacity:0;}
+}
+
+/* ── device chrome ── */
+.dev{
+  width:100%;background:#0B0F07;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:20px;padding:9px;
+  box-shadow:0 26px 60px -24px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.03) inset;
+}
+.dev.is-phone{border-radius:26px;padding:8px;}
+/* Fixed height across all three so the devices align top and bottom and the
+   connectors meet them at the same point. */
+.scr{
+  background:var(--void);border-radius:13px;overflow:hidden;
+  color:var(--chalk);font-size:11px;line-height:1.4;
+  display:flex;flex-direction:column;min-height:336px;
+}
+.dev.is-phone .scr{border-radius:19px;}
+
+/* screen header */
+.scr-top{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 12px;border-bottom:1px solid var(--graphite);gap:8px;
+}
+.scr-name{font-family:var(--fd);font-weight:700;font-size:12.5px;letter-spacing:-.01em;}
+.scr-chip{
+  font-family:var(--fm);font-size:8px;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 7px;border-radius:20px;white-space:nowrap;
+}
+.chip-tbl{background:rgba(110,127,92,.12);color:var(--ember);border:1px solid rgba(110,127,92,.25);}
+.chip-live{background:rgba(92,176,64,.12);color:#3A6B24;border:1px solid rgba(58,107,36,.22);display:inline-flex;align-items:center;gap:5px;}
+.chip-live i{width:5px;height:5px;border-radius:50%;background:#5CB040;animation:blip 1.6s ease infinite;display:block;}
+
+.scr-body{padding:11px 12px;flex:1;}
+
+/* menu categories */
+.cats{display:flex;gap:5px;margin-bottom:11px;}
+.cat{
+  font-size:9.5px;padding:4px 9px;border-radius:20px;
+  border:1px solid var(--graphite);color:var(--smoke);white-space:nowrap;
+}
+.cat.on{background:var(--flame);border-color:var(--flame);color:#fff;font-weight:600;}
+
+/* menu items */
+.item{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid rgba(43,43,40,.07);}
+.item:last-child{border-bottom:none;}
+.item-img{
+  width:32px;height:32px;border-radius:7px;flex-shrink:0;
+  background:linear-gradient(135deg,#C9A87C,#8A6A44);
+}
+.item-img.b2{background:linear-gradient(135deg,#B08E64,#6E5236);}
+.item-img.b3{background:linear-gradient(135deg,#7C8A66,#4E5C3C);}
+.item-img.b4{background:linear-gradient(135deg,#D8B98A,#A88450);}
+.item-mid{flex:1;min-width:0;}
+.item-n{font-weight:600;font-size:11px;color:var(--chalk);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.item-p{font-family:var(--fm);font-size:10px;color:var(--smoke);margin-top:1px;}
+.item-add{
+  width:21px;height:21px;border-radius:6px;flex-shrink:0;
+  background:var(--flame);color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:13px;line-height:1;font-weight:600;
+}
+.item-qty{
+  width:auto;padding:0 7px;height:21px;border-radius:6px;flex-shrink:0;
+  background:var(--flame);color:#fff;display:flex;align-items:center;justify-content:center;
+  font-family:var(--fm);font-size:10px;font-weight:700;
+}
+.item.out{opacity:.42;}
+.item.out .item-img{filter:grayscale(1);}
+.out-tag{
+  font-family:var(--fm);font-size:8px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--smoke);border:1px solid var(--graphite);padding:2px 6px;border-radius:4px;flex-shrink:0;
+}
+
+/* phone cart bar */
+.cart{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  background:var(--chalk);color:#fff;padding:9px 12px;
+}
+.cart-l{font-family:var(--fm);font-size:9.5px;color:rgba(255,255,255,.7);}
+.cart-l b{display:block;font-size:12px;color:#fff;margin-top:1px;}
+.cart-btn{
+  background:var(--signal);color:#12170D;font-family:var(--fd);font-weight:700;
+  font-size:11px;padding:7px 13px;border-radius:7px;white-space:nowrap;
+}
+
+/* kitchen tickets */
+.tkt{
+  border:1px solid var(--graphite);border-radius:9px;
+  padding:9px 10px;margin-bottom:7px;background:#fff;
+}
+.tkt.new{
+  border-color:var(--flame);background:rgba(110,127,92,.05);
+  box-shadow:0 0 0 2px rgba(110,127,92,.1);
+}
+.tkt-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;gap:6px;}
+.tkt-t{font-family:var(--fd);font-weight:700;font-size:12px;}
+.tkt-time{font-family:var(--fm);font-size:9.5px;color:var(--smoke);font-variant-numeric:tabular-nums;}
+.tkt-new-tag{
+  font-family:var(--fm);font-size:7.5px;letter-spacing:.12em;text-transform:uppercase;
+  background:var(--flame);color:#fff;padding:2px 6px;border-radius:4px;
+}
+.tkt-line{display:flex;gap:6px;font-size:10.5px;color:var(--smoke);padding:2px 0;}
+.tkt-line b{color:var(--chalk);font-family:var(--fm);font-size:10px;}
+.tkt-act{
+  margin-top:8px;background:var(--flame);color:#fff;text-align:center;
+  font-family:var(--fd);font-weight:700;font-size:10.5px;
+  padding:6px;border-radius:6px;
+}
+.tkt.done{opacity:.5;}
+
+/* owner dashboard */
+.kpi{margin-bottom:11px;}
+.kpi-k{font-family:var(--fm);font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--label);margin-bottom:3px;}
+.kpi-v{font-family:var(--fd);font-weight:800;font-size:23px;letter-spacing:-.02em;line-height:1;font-variant-numeric:tabular-nums;}
+.kpi-d{font-family:var(--fm);font-size:9.5px;color:var(--ember);margin-top:3px;}
+.bars{display:flex;align-items:flex-end;gap:4px;height:38px;margin:11px 0;}
+.bar{flex:1;background:var(--graphite);border-radius:3px 3px 0 0;}
+.bar.hi{background:var(--flame);}
+.drow{
+  display:flex;align-items:center;gap:7px;padding:7px 0;
+  border-top:1px solid rgba(43,43,40,.08);font-size:10.5px;
+}
+.drow-ico{
+  width:19px;height:19px;border-radius:5px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:10px;
+}
+.ico-warn{background:rgba(181,86,58,.12);color:var(--rust);}
+.ico-ok{background:rgba(110,127,92,.12);color:var(--ember);}
+.drow-t{flex:1;color:var(--chalk);font-weight:500;}
+.drow-v{font-family:var(--fm);font-size:9.5px;color:var(--smoke);white-space:nowrap;}
+
+/* flow footnote */
+.flow-note{
+  margin-top:clamp(38px,5vw,58px);text-align:center;
+  font-family:var(--fm);font-size:11px;letter-spacing:.13em;
+  text-transform:uppercase;color:rgba(251,250,246,.42);
+}
+.flow-note b{color:var(--signal);font-weight:400;}
+
+@media(max-width:900px){
+  .flow-rail{flex-direction:column;align-items:center;gap:0;}
+  .flow-step{width:min(290px,100%);}
+  .flow-link{
+    width:2px;min-width:0;max-width:none;height:52px;margin:14px 0;align-self:center;
+    background:linear-gradient(180deg,rgba(166,196,124,.1),rgba(166,196,124,.4),rgba(166,196,124,.1));
+  }
+  .flow-link::after{top:auto;bottom:-1px;right:auto;left:50%;transform:translateX(-50%);}
+  .flow-pulse{left:50%;top:0;transform:translateX(-50%);animation-name:flowpulse-v;}
+  @keyframes flowpulse-v{
+    0%{top:0;opacity:0;} 15%{opacity:1;} 85%{opacity:1;} 100%{top:100%;opacity:0;}
+  }
+}
+
+/* ============================================================
    LIGHT WORLD — info sections
    ============================================================ */
 .light{position:relative;z-index:3;background:var(--void);color:var(--chalk);}
@@ -619,7 +850,7 @@ a{color:inherit;text-decoration:none;}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto;}
   *{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;}
-  .beat-card,.mod{opacity:1!important;transform:none!important;}
+  .beat-card,.mod,.flow-step,.flow-link{opacity:1!important;transform:none!important;}
 }
 </style>
 </head>
@@ -644,6 +875,7 @@ a{color:inherit;text-decoration:none;}
     </div>
     <button class="nav-burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <div class="nav-links" id="navLinks">
+      <a href="#product">See it</a>
       <a href="#story">The story</a>
       <a href="#modules">What you get</a>
       <a href="pricing.html">Pricing</a>
@@ -679,6 +911,165 @@ a{color:inherit;text-decoration:none;}
     </div>
   </div>
 </header>
+
+<!-- ============ FLOW — one order, end to end ============ -->
+<section class="flow" id="product">
+  <div class="container">
+    <div class="flow-head">
+      <div class="eyebrow">See it in one glance</div>
+      <h2>One order, <em>end to end.</em></h2>
+      <p>A guest orders from their table. Your kitchen sees it the same second. Your books update themselves. That's EatOps — the whole thing, in one picture.</p>
+    </div>
+
+    <div class="flow-rail">
+
+      <!-- 1 · Guest -->
+      <div class="flow-step">
+        <div class="flow-num">01 — Guest</div>
+        <div class="dev is-phone">
+          <div class="scr">
+            <div class="scr-top">
+              <span class="scr-name">Sidewalk Café</span>
+              <span class="scr-chip chip-tbl">Table 6</span>
+            </div>
+            <div class="scr-body">
+              <div class="cats">
+                <span class="cat on">Coffee</span>
+                <span class="cat">Food</span>
+                <span class="cat">Cold</span>
+              </div>
+              <div class="item">
+                <span class="item-img"></span>
+                <span class="item-mid"><span class="item-n">Flat White</span><span class="item-p">₹180</span></span>
+                <span class="item-qty">1</span>
+              </div>
+              <div class="item">
+                <span class="item-img b2"></span>
+                <span class="item-mid"><span class="item-n">Oat Cappuccino</span><span class="item-p">₹220</span></span>
+                <span class="item-qty">1</span>
+              </div>
+              <div class="item out">
+                <span class="item-img b3"></span>
+                <span class="item-mid"><span class="item-n">Cold Brew</span><span class="item-p">₹240</span></span>
+                <span class="out-tag">Sold out</span>
+              </div>
+              <div class="item">
+                <span class="item-img b4"></span>
+                <span class="item-mid"><span class="item-n">Almond Croissant</span><span class="item-p">₹150</span></span>
+                <span class="item-add">+</span>
+              </div>
+            </div>
+            <div class="cart">
+              <span class="cart-l">2 items<b>₹400</b></span>
+              <span class="cart-btn">Place order</span>
+            </div>
+          </div>
+        </div>
+        <div class="flow-cap">
+          <b>Your guest orders</b>
+          <span>Scans the QR at the table. No app to download, nothing to install.</span>
+        </div>
+      </div>
+
+      <div class="flow-link"><span class="flow-pulse"></span></div>
+
+      <!-- 2 · Kitchen -->
+      <div class="flow-step">
+        <div class="flow-num">02 — Kitchen</div>
+        <div class="dev">
+          <div class="scr">
+            <div class="scr-top">
+              <span class="scr-name">Kitchen</span>
+              <span class="scr-chip chip-live"><i></i>Live</span>
+            </div>
+            <div class="scr-body">
+              <div class="tkt new">
+                <div class="tkt-top">
+                  <span class="tkt-t">Table 6</span>
+                  <span class="tkt-new-tag">New</span>
+                </div>
+                <div class="tkt-line"><b>1×</b> Flat White</div>
+                <div class="tkt-line"><b>1×</b> Oat Cappuccino</div>
+                <div class="tkt-act">Start preparing</div>
+              </div>
+              <div class="tkt">
+                <div class="tkt-top">
+                  <span class="tkt-t">Table 2</span>
+                  <span class="tkt-time">3:20</span>
+                </div>
+                <div class="tkt-line"><b>2×</b> Masala Chai</div>
+              </div>
+              <div class="tkt done">
+                <div class="tkt-top">
+                  <span class="tkt-t">Takeaway</span>
+                  <span class="tkt-time">Ready</span>
+                </div>
+                <div class="tkt-line"><b>1×</b> Croissant</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flow-cap">
+          <b>Your kitchen sees it</b>
+          <span>The ticket lands the same second, with the table number on it.</span>
+        </div>
+      </div>
+
+      <div class="flow-link"><span class="flow-pulse"></span></div>
+
+      <!-- 3 · Owner -->
+      <div class="flow-step">
+        <div class="flow-num">03 — You</div>
+        <div class="dev">
+          <div class="scr">
+            <div class="scr-top">
+              <span class="scr-name">Today</span>
+              <span class="scr-chip chip-tbl">Tue</span>
+            </div>
+            <div class="scr-body">
+              <div class="kpi">
+                <div class="kpi-k">Sales today</div>
+                <div class="kpi-v">₹18,240</div>
+                <div class="kpi-d">▲ 12% vs last Tue</div>
+              </div>
+              <div class="bars">
+                <span class="bar" style="height:42%"></span>
+                <span class="bar" style="height:58%"></span>
+                <span class="bar" style="height:37%"></span>
+                <span class="bar" style="height:71%"></span>
+                <span class="bar" style="height:52%"></span>
+                <span class="bar" style="height:64%"></span>
+                <span class="bar hi" style="height:88%"></span>
+              </div>
+              <div class="drow">
+                <span class="drow-ico ico-ok">✓</span>
+                <span class="drow-t">Table 6 · paid</span>
+                <span class="drow-v">₹400</span>
+              </div>
+              <div class="drow">
+                <span class="drow-ico ico-warn">!</span>
+                <span class="drow-t">Oat milk running low</span>
+                <span class="drow-v">3 days</span>
+              </div>
+              <div class="drow">
+                <span class="drow-ico ico-ok">★</span>
+                <span class="drow-t">Regulars in today</span>
+                <span class="drow-v">12</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flow-cap">
+          <b>You see everything</b>
+          <span>Sale logged, stock counted down, regular recognised. Automatically.</span>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="flow-note">No commissions &nbsp;·&nbsp; No app downloads &nbsp;·&nbsp; <b>Nothing typed in twice</b></p>
+  </div>
+</section>
 
 <!-- ============ STORY ============ -->
 <main class="story" id="story">
@@ -1086,7 +1477,7 @@ var ease  = function(t){ return t<0.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2; };
   document.documentElement.classList.add('js-reveal');
 
   var mods = [].slice.call(document.querySelectorAll('.mod'));
-  var pending = [].slice.call(document.querySelectorAll('[data-beat], .mod'));
+  var pending = [].slice.call(document.querySelectorAll('[data-beat], .mod, .flow'));
 
   function show(el){
     var i = mods.indexOf(el);
