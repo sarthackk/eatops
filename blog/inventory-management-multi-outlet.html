@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventory Across Multiple Outlets: Why Spreadsheets Always Fail — EatOps</title>
+<meta name="description" content="One café, a spreadsheet is manageable. Two outlets and it doubles in complexity, halves in reliability. The par-level problem and what real visibility across outlets actually means.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,500;1,9..144,600&family=Space+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body id="top">
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<nav class="nav" id="nav">
+  <div class="container">
+    <a href="../index.html" class="logo">Eat<span>Ops</span></a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="../features.html">Features</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../about.html">About</a>
+      <a href="../blog.html" class="active">Blog</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+    <a href="../contact.html" class="btn-flame">Book a demo</a>
+  </div>
+</nav>
+
+<header class="post-hero">
+  <div class="page-grid"></div>
+  <div class="page-glow"></div>
+  <div class="container">
+    <div class="post-hero-meta">
+      <span class="post-cat">Inventory</span>
+      <span class="sep">·</span>
+      <span class="date">June 7, 2026</span>
+      <span class="sep">·</span>
+      <span class="read">5 min read</span>
+    </div>
+    <h1>Inventory Across Multiple Outlets: Why Spreadsheets Always Fail</h1>
+    <p class="lead">One café, a spreadsheet is manageable. Two outlets and it doubles in complexity, halves in reliability. The par-level problem, the late-notice problem, and what visibility actually means in practice.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <article class="post-content reveal">
+
+      <p>When you run one café, a spreadsheet for inventory is fine. Imperfect, but workable. Someone updates it at the end of each service. It's roughly right most of the time, and when it's wrong, the person who updated it is usually the same person who catches the error.</p>
+
+      <p>When you open the second outlet, the spreadsheet doubles in complexity and halves in reliability. By the third outlet, it's a problem nobody wants to own — and everybody blames somebody else for.</p>
+
+      <h2>The single-outlet illusion</h2>
+
+      <p>Spreadsheets feel like they work at one location because the feedback loop is short. The person who updates the inventory is usually the same person who uses it. Errors get noticed quickly. Corrections happen in real time. The "system" works because it's basically one person keeping track of one space.</p>
+
+      <p>Across outlets, this breaks immediately. The person managing inventory at outlet three has no visibility into what outlet one ordered last week. There's no shared reference point. Par levels — when they exist at all — live in someone's head or in a tab that hasn't been touched in a month. The first time anyone knows there's a problem is when the problem has already happened.</p>
+
+      <h2>The par-level problem</h2>
+
+      <p>Par levels — the minimum quantity of each ingredient that should always be on hand — are the single most important number in café inventory management. Every downstream decision (when to order, how much, what's at risk) flows from whether par levels are set correctly and whether the current stock is being compared against them in real time.</p>
+
+      <p>Across outlets, managing par levels with spreadsheets is nearly impossible for a structural reason: each outlet has its own consumption pace. What depletes in two days at your busiest location might last a week at a quieter one. A shared spreadsheet either uses one set of par levels for all outlets (categorically wrong) or requires each outlet to manage their own tab (which nobody does consistently after the first month).</p>
+
+      <h2>The late-notice problem</h2>
+
+      <p>The defining failure mode of spreadsheet-based inventory is this: you always find out too late.</p>
+
+      <p>The kitchen is down to half a bag of beans at 9am on a Saturday morning. The supplier can't deliver until Monday. The manager does a panic run to the nearest wholesale market, pays retail prices, and loses two hours of their Saturday. This isn't a rare edge case — it's how most multi-outlet operations run at least once a month.</p>
+
+      <blockquote><p>A real-time system catches this on Friday afternoon. The alert comes before the crisis, not after it.</p></blockquote>
+
+      <p>When a stock level drops below par on a Friday at 3pm, there's still time to call the supplier, request a transfer from an outlet with surplus, or place an order for Saturday morning delivery. That 18-hour window is the difference between a smooth Saturday and a preventable crisis. Spreadsheets don't give you that window. They give you the information when someone bothers to update them — which is often after the problem has already arrived.</p>
+
+      <h2>The inter-outlet transfer problem</h2>
+
+      <p>Multi-outlet groups often have uneven stock across locations: outlet one over-ordered oat milk and has three weeks of supply, while outlet two is running low. A quick internal transfer solves this without a supplier call. But with spreadsheets and WhatsApp coordination, this kind of transfer requires someone to notice the imbalance, message the right manager, arrange the logistics, update two separate spreadsheets, and remember to follow up on whether it actually happened.</p>
+
+      <p>With a shared inventory system, the imbalance is visible to anyone with access. The transfer request, approval, and update happen in the system. The records are accurate. The spreadsheet reconciliation on Sunday evening doesn't happen because it doesn't need to.</p>
+
+      <h2>What visibility across outlets actually means</h2>
+
+      <p>The phrase "cross-outlet visibility" gets used a lot. What it actually means in practice is simple: one screen that shows, right now, the stock level of every tracked ingredient at every outlet — compared against that outlet's par level — so you can see at a glance what's fine, what's borderline, and what needs action today.</p>
+
+      <p>No calls between managers. No WhatsApp stock-count requests. No spreadsheet reconciliation sessions. Just the information, when it's relevant, before it becomes a problem.</p>
+
+      <p>When your inventory system works like this, you stop ordering from habit and start ordering from data. Waste drops. Run-outs become rare. And your operations team spends their mental energy running the café — not managing the spreadsheet.</p>
+
+      <div class="callout"><p><strong>EatOps Inventory</strong> tracks stock across all your outlets in real time, with par-level alerts and inter-outlet transfer management built in — so the Saturday morning crisis becomes a Thursday afternoon email.</p></div>
+
+      <div class="post-end-bar">
+        <a href="../blog.html" class="back-link">← Back to journal</a>
+        <a href="../contact.html" class="btn-flame">Book a demo <span class="ar">→</span></a>
+      </div>
+
+    </article>
+  </div>
+</section>
+
+<div class="marquee marquee-quiet" aria-hidden="true">
+  <div class="marquee-track">
+    <span>EST. 2026&nbsp;✦&nbsp;MODERN HOSPITALITY OS&nbsp;✦&nbsp;MADE WITH CARE IN INDIA&nbsp;✦&nbsp;EVERY OUTLET, ONE SYSTEM&nbsp;✦&nbsp;</span>
+    <span>EST. 2026&nbsp;✦&nbsp;MODERN HOSPITALITY OS&nbsp;✦&nbsp;MADE WITH CARE IN INDIA&nbsp;✦&nbsp;EVERY OUTLET, ONE SYSTEM&nbsp;✦&nbsp;</span>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container footer-top reveal">
+    <div class="footer-brand">
+      <a href="../index.html" class="logo">Eat<span>Ops</span></a>
+      <p class="footer-tag">The operating system for modern hospitality. Menu, loyalty, inventory and team ops — built for the cafés that give a damn.</p>
+      <div class="footer-social">
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg class="icon" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v6h-4v-6a2 2 0 0 0-4 0v6h-4V8.5h4V10"/><rect x="2" y="8.5" width="4" height="11.5"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="https://x.com" target="_blank" rel="noopener" aria-label="X"><svg class="icon" viewBox="0 0 24 24"><path d="M4 4l7.2 9.2L4.3 20H7l5.4-6 4.6 6H21l-7.6-9.7L20 4h-2.6l-4.7 5.2L8.7 4z" fill="currentColor" stroke="none"/></svg></a>
+        <a href="mailto:hello@eatops.co" aria-label="Email"><svg class="icon" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 7l9 6 9-6"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col"><span class="footer-h">Product</span><a href="../features.html">Features</a><a href="../pricing.html">Pricing</a><a href="../blog.html">Blog</a></div>
+      <div class="footer-col"><span class="footer-h">Company</span><a href="../about.html">About</a><a href="../contact.html">Contact</a><a href="../index.html#trust">Why EatOps</a></div>
+      <div class="footer-col"><span class="footer-h">Get started</span><a href="../contact.html" class="footer-cta-link">Book a demo →</a><a href="mailto:hello@eatops.co">hello@eatops.co</a></div>
+    </div>
+  </div>
+  <div class="footer-wordmark reveal" aria-hidden="true">EatOps</div>
+  <div class="container footer-bottom">
+    <span>© 2026 EatOps. All rights reserved.</span>
+    <svg class="footer-sprig" viewBox="0 0 64 22" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M4 11h56"/><path d="M32 11c-3.5-4-7.5-4-9.5-2 2 3.2 6 3 9.5 2z"/><path d="M32 11c3.5-4 7.5-4 9.5-2-2 3.2-6 3-9.5 2z"/><path d="M23 11c-2.6-3-5.5-3-7-1.6M41 11c2.6-3 5.5-3 7-1.6"/>
+    </svg>
+    <span>Built by <a href="https://crestify.co" target="_blank" rel="noopener">Crestify ↗</a></span>
+  </div>
+  <a class="back-top" href="#top"><span class="arc">↑</span> Back to top</a>
+</footer>
+
+<script src="../assets/site.js" defer></script>
+</body>
+</html>

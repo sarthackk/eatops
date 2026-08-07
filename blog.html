@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog — EatOps</title>
+<meta name="description" content="Thinking on hospitality operations, café management, inventory, loyalty, and what tier-1 F&B operators do differently.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,500;1,9..144,600&family=Space+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<style>
+.featured-post{display:grid;grid-template-columns:1fr 1.1fr;gap:0;border-radius:16px;overflow:hidden;
+  background:var(--obsidian);border:1px solid var(--graphite);
+  box-shadow:0 1px 2px rgba(43,43,40,.03),0 28px 56px -32px rgba(43,43,40,.2);
+  margin-bottom:56px;}
+.featured-post-thumb{background:linear-gradient(145deg,#6E7F5C,#3A4A30);display:flex;align-items:center;justify-content:center;min-height:340px;position:relative;overflow:hidden;}
+.featured-post-thumb::after{content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse at 30% 70%,rgba(255,255,255,.08),transparent 60%);}
+.featured-thumb-label{font-family:var(--f-mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(255,255,255,.55);position:absolute;bottom:22px;left:24px;}
+.featured-thumb-icon{color:rgba(255,255,255,.18);width:160px;height:160px;}
+.featured-thumb-icon svg{width:160px;height:160px;fill:none;stroke:currentColor;stroke-width:.9;stroke-linecap:round;stroke-linejoin:round;}
+.featured-post-body{padding:44px 44px 40px;display:flex;flex-direction:column;}
+.featured-post-body .post-cat{margin-bottom:14px;display:inline-block;}
+.featured-post-body h2{font-family:var(--f-display);font-weight:800;font-size:clamp(26px,3vw,38px);
+  letter-spacing:-0.4px;line-height:1.1;color:var(--chalk);margin-bottom:16px;}
+.featured-post-body .excerpt{font-size:16px;line-height:1.72;color:var(--smoke);flex:1;margin-bottom:28px;}
+.featured-post-body .meta{display:flex;align-items:center;gap:10px;margin-bottom:22px;}
+.featured-post-body .meta span{font-family:var(--f-mono);font-size:10px;color:var(--label);letter-spacing:.04em;}
+.featured-post-body .meta .dot{width:3px;height:3px;border-radius:50%;background:var(--label);}
+.featured-read-link{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-display);font-weight:700;
+  font-size:15px;color:var(--flame);transition:gap .2s var(--ease);}
+.featured-read-link:hover{gap:12px;}
+.blog-label{font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--label);
+  display:flex;align-items:center;gap:10px;margin-bottom:28px;}
+.blog-label::before,.blog-label::after{content:"";flex:1;height:1px;background:var(--graphite);}
+@media (max-width:840px){
+  .featured-post{grid-template-columns:1fr;}
+  .featured-post-thumb{min-height:200px;}
+  .featured-post-body{padding:30px 28px 26px;}
+}
+</style>
+</head>
+<body id="top">
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<nav class="nav" id="nav">
+  <div class="container">
+    <a href="index.html" class="logo">Eat<span>Ops</span></a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="features.html">Features</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="contact.html" class="btn-flame">Book a demo</a>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="page-grid"></div>
+  <div class="page-glow"></div>
+  <div class="container">
+    <span class="eyebrow">The Journal</span>
+    <h1>Thinking on <span class="flame ital">hospitality</span> ops.</h1>
+    <p class="lead">What works in modern café and restaurant operations. Practical thinking on inventory, loyalty, team systems, and the things that separate good from great.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+
+    <!-- Featured / latest post -->
+    <a href="blog/why-whatsapp-is-costing-your-cafe.html" class="featured-post reveal" style="display:grid;color:inherit;">
+      <div class="featured-post-thumb">
+        <div class="featured-thumb-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <span class="featured-thumb-label">Latest article</span>
+      </div>
+      <div class="featured-post-body">
+        <span class="post-cat">Operations</span>
+        <div class="meta">
+          <span>June 18, 2026</span>
+          <span class="dot"></span>
+          <span>5 min read</span>
+        </div>
+        <h2>Why WhatsApp Is Costing Your Café More Than You Think</h2>
+        <p class="excerpt">Three groups running simultaneously. Orders buried under chatter. No audit trail. No access control. The tool holding your café together is quietly the biggest operational risk in it.</p>
+        <span class="featured-read-link">Read article <span>→</span></span>
+      </div>
+    </a>
+
+    <!-- Grid of remaining posts -->
+    <div class="blog-label">More from the journal</div>
+    <div class="blog-grid">
+
+      <a href="blog/the-real-cost-of-delivery-commissions.html" class="blog-card reveal" style="color:inherit;">
+        <div class="blog-card-thumb" style="background:linear-gradient(90deg,#B07A22,#8A5C10);"></div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta"><span class="post-cat">Business</span><span class="dot"></span><span class="date">June 14, 2026</span></div>
+          <div class="blog-card-title">The Hidden Tax: What Food Delivery Commissions Are Really Taking From You</div>
+          <div class="blog-card-excerpt">On a ₹400 order, you're handing over ₹100–140 before packaging and prep. The math most operators don't do — and what owning your ordering channel actually changes.</div>
+          <div class="blog-card-foot"><span class="blog-card-read">4 min read</span><span class="blog-card-arrow">Read <span>→</span></span></div>
+        </div>
+      </a>
+
+      <a href="blog/loyalty-programs-that-actually-work.html" class="blog-card reveal" style="color:inherit;">
+        <div class="blog-card-thumb" style="background:linear-gradient(90deg,#6E55B0,#4D3D8A);"></div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta"><span class="post-cat">Loyalty</span><span class="dot"></span><span class="date">June 10, 2026</span></div>
+          <div class="blog-card-title">Loyalty Programs That Actually Work for Independent Cafés</div>
+          <div class="blog-card-excerpt">The stamp card is dead. What big-chain loyalty gets right that most independents miss — and how to build a program that fits your brand, not someone else's template.</div>
+          <div class="blog-card-foot"><span class="blog-card-read">4 min read</span><span class="blog-card-arrow">Read <span>→</span></span></div>
+        </div>
+      </a>
+
+      <a href="blog/inventory-management-multi-outlet.html" class="blog-card reveal" style="color:inherit;">
+        <div class="blog-card-thumb" style="background:linear-gradient(90deg,#3F77AD,#2A5A8C);"></div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta"><span class="post-cat">Inventory</span><span class="dot"></span><span class="date">June 7, 2026</span></div>
+          <div class="blog-card-title">Inventory Across Multiple Outlets: Why Spreadsheets Always Fail</div>
+          <div class="blog-card-excerpt">One café, a spreadsheet is manageable. Two outlets and it doubles in complexity, halves in reliability. The par-level problem and what visibility actually means in practice.</div>
+          <div class="blog-card-foot"><span class="blog-card-read">5 min read</span><span class="blog-card-arrow">Read <span>→</span></span></div>
+        </div>
+      </a>
+
+      <a href="blog/qr-ordering-what-it-actually-changes.html" class="blog-card reveal" style="color:inherit;">
+        <div class="blog-card-thumb" style="background:linear-gradient(90deg,#3E8E5E,#2A6E45);"></div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta"><span class="post-cat">Menu &amp; Orders</span><span class="dot"></span><span class="date">June 4, 2026</span></div>
+          <div class="blog-card-title">QR Ordering Isn't a Gimmick. Here's What It Actually Changes.</div>
+          <div class="blog-card-excerpt">The upsell problem. Real-time 86'ing. Table data you've never had. QR ordering done right isn't a replacement for good service — it's what makes good service sustainable.</div>
+          <div class="blog-card-foot"><span class="blog-card-read">3 min read</span><span class="blog-card-arrow">Read <span>→</span></span></div>
+        </div>
+      </a>
+
+      <a href="blog/your-software-should-look-like-you.html" class="blog-card reveal" style="color:inherit;">
+        <div class="blog-card-thumb" style="background:linear-gradient(90deg,#C0614A,#9A4A35);"></div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta"><span class="post-cat">Brand</span><span class="dot"></span><span class="date">May 30, 2026</span></div>
+          <div class="blog-card-title">Your Software Should Look Like You, Not Your Vendor</div>
+          <div class="blog-card-excerpt">Open the loyalty app for three independent cafés and there's a good chance you're looking at the same shade of blue. Why brand consistency matters at every touchpoint.</div>
+          <div class="blog-card-foot"><span class="blog-card-read">3 min read</span><span class="blog-card-arrow">Read <span>→</span></span></div>
+        </div>
+      </a>
+
+      <a href="blog/role-based-access-for-cafes.html" class="blog-card reveal" style="color:inherit;">
+        <div class="blog-card-thumb" style="background:linear-gradient(90deg,#6E7F5C,#3A4A30);"></div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta"><span class="post-cat">Operations</span><span class="dot"></span><span class="date">May 26, 2026</span></div>
+          <div class="blog-card-title">Who Can See What? A Guide to Role-Based Access in Café Operations</div>
+          <div class="blog-card-excerpt">Most operations start with one admin account. By three outlets, six people are logging into the same account. What breaks — and what good access control actually looks like.</div>
+          <div class="blog-card-foot"><span class="blog-card-read">4 min read</span><span class="blog-card-arrow">Read <span>→</span></span></div>
+        </div>
+      </a>
+
+      <a href="blog/moving-off-spreadsheets.html" class="blog-card reveal" style="color:inherit;">
+        <div class="blog-card-thumb" style="background:linear-gradient(90deg,#8A8275,#5A5248);"></div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta"><span class="post-cat">Operations</span><span class="dot"></span><span class="date">May 22, 2026</span></div>
+          <div class="blog-card-title">How to Move Your Café Off Spreadsheets Without Breaking Everything</div>
+          <div class="blog-card-excerpt">The migration everyone delays because the spreadsheets are working (just barely). Why sudden switches fail — and what a clean migration actually looks like.</div>
+          <div class="blog-card-foot"><span class="blog-card-read">5 min read</span><span class="blog-card-arrow">Read <span>→</span></span></div>
+        </div>
+      </a>
+
+      <a href="blog/scaling-to-multiple-outlets.html" class="blog-card reveal" style="color:inherit;">
+        <div class="blog-card-thumb" style="background:linear-gradient(90deg,#2A7A7A,#1A5A5A);"></div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta"><span class="post-cat">Scaling</span><span class="dot"></span><span class="date">May 18, 2026</span></div>
+          <div class="blog-card-title">The Operators Who Scale and the Ones Who Scramble</div>
+          <div class="blog-card-excerpt">Opening a second outlet reveals everything the first one was hiding. The coordination problem, the visibility problem, and what separates groups that scale from those that don't.</div>
+          <div class="blog-card-foot"><span class="blog-card-read">4 min read</span><span class="blog-card-arrow">Read <span>→</span></span></div>
+        </div>
+      </a>
+
+      <a href="blog/what-tier1-cafes-do-differently.html" class="blog-card reveal" style="color:inherit;">
+        <div class="blog-card-thumb" style="background:linear-gradient(90deg,#262A20,#3A4030);"></div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta"><span class="post-cat">Excellence</span><span class="dot"></span><span class="date">May 14, 2026</span></div>
+          <div class="blog-card-title">What Tier-1 Cafés Do Differently</div>
+          <div class="blog-card-excerpt">It isn't the most expensive coffee or the most Instagram-worthy space. It's the habits, standards, and systems that make every service slightly better than the last.</div>
+          <div class="blog-card-foot"><span class="blog-card-read">4 min read</span><span class="blog-card-arrow">Read <span>→</span></span></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>Running a café group? Let's talk.</h2>
+    <p>We work with a select group of operators across India. If any of this resonates, there's room for a conversation.</p>
+    <a href="contact.html" class="btn-void">Book a demo <span class="ar">→</span></a>
+  </div>
+</section>
+
+<div class="marquee marquee-quiet" aria-hidden="true">
+  <div class="marquee-track">
+    <span>EST. 2026&nbsp;✦&nbsp;MODERN HOSPITALITY OS&nbsp;✦&nbsp;MADE WITH CARE IN INDIA&nbsp;✦&nbsp;EVERY OUTLET, ONE SYSTEM&nbsp;✦&nbsp;</span>
+    <span>EST. 2026&nbsp;✦&nbsp;MODERN HOSPITALITY OS&nbsp;✦&nbsp;MADE WITH CARE IN INDIA&nbsp;✦&nbsp;EVERY OUTLET, ONE SYSTEM&nbsp;✦&nbsp;</span>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container footer-top reveal">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Eat<span>Ops</span></a>
+      <p class="footer-tag">The operating system for modern hospitality. Menu, loyalty, inventory and team ops — built for the cafés that give a damn.</p>
+      <div class="footer-social">
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg class="icon" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v6h-4v-6a2 2 0 0 0-4 0v6h-4V8.5h4V10"/><rect x="2" y="8.5" width="4" height="11.5"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="https://x.com" target="_blank" rel="noopener" aria-label="X"><svg class="icon" viewBox="0 0 24 24"><path d="M4 4l7.2 9.2L4.3 20H7l5.4-6 4.6 6H21l-7.6-9.7L20 4h-2.6l-4.7 5.2L8.7 4z" fill="currentColor" stroke="none"/></svg></a>
+        <a href="mailto:hello@eatops.co" aria-label="Email"><svg class="icon" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 7l9 6 9-6"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col"><span class="footer-h">Product</span><a href="features.html">Features</a><a href="pricing.html">Pricing</a><a href="blog.html">Blog</a><a href="index.html#livedemo">Live demo</a></div>
+      <div class="footer-col"><span class="footer-h">Company</span><a href="about.html">About</a><a href="contact.html">Contact</a><a href="index.html#trust">Why EatOps</a></div>
+      <div class="footer-col"><span class="footer-h">Get started</span><a href="contact.html" class="footer-cta-link">Book a demo →</a><a href="mailto:hello@eatops.co">hello@eatops.co</a></div>
+    </div>
+  </div>
+  <div class="footer-wordmark reveal" aria-hidden="true">EatOps</div>
+  <div class="container footer-bottom">
+    <span>© 2026 EatOps. All rights reserved.</span>
+    <svg class="footer-sprig" viewBox="0 0 64 22" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M4 11h56"/><path d="M32 11c-3.5-4-7.5-4-9.5-2 2 3.2 6 3 9.5 2z"/><path d="M32 11c3.5-4 7.5-4 9.5-2-2 3.2-6 3-9.5 2z"/><path d="M23 11c-2.6-3-5.5-3-7-1.6M41 11c2.6-3 5.5-3 7-1.6"/>
+    </svg>
+    <span>Built by <a href="https://crestify.co" target="_blank" rel="noopener">Crestify ↗</a></span>
+  </div>
+  <a class="back-top" href="#top"><span class="arc">↑</span> Back to top</a>
+</footer>
+
+<script src="assets/site.js" defer></script>
+</body>
+</html>

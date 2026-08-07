@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who Can See What? A Guide to Role-Based Access in Café Operations — EatOps</title>
+<meta name="description" content="Most operations start with one admin account. By three outlets, six people are logging into the same account. What breaks — and what good access control actually looks like.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,500;1,9..144,600&family=Space+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body id="top">
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<nav class="nav" id="nav">
+  <div class="container">
+    <a href="../index.html" class="logo">Eat<span>Ops</span></a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="../features.html">Features</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="../about.html">About</a>
+      <a href="../blog.html" class="active">Blog</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+    <a href="../contact.html" class="btn-flame">Book a demo</a>
+  </div>
+</nav>
+
+<header class="post-hero">
+  <div class="page-grid"></div>
+  <div class="page-glow"></div>
+  <div class="container">
+    <div class="post-hero-meta">
+      <span class="post-cat">Operations</span>
+      <span class="sep">·</span>
+      <span class="date">May 26, 2026</span>
+      <span class="sep">·</span>
+      <span class="read">4 min read</span>
+    </div>
+    <h1>Who Can See What? A Guide to Role-Based Access in Café Operations</h1>
+    <p class="lead">Most operations start with one admin account. By three outlets, six people are using the same login. What breaks — what gets deleted, changed, or leaked — and what good access control actually looks like in a café context.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <article class="post-content reveal">
+
+      <p>Most small hospitality businesses start with one admin account. The owner sets it up, shares the credentials with the manager, and the manager occasionally shares it with whoever covers on weekends. By the time the operation has three outlets and a dozen staff members, six people are logging into the same account — and nobody knows exactly who has done what.</p>
+
+      <p>This is a problem that compounds quietly until something goes wrong: a deleted order, a menu price that changed unexpectedly, a discount applied that shouldn't have been. At that point, the investigation is impossible because all actions look identical in the logs. They all happened under the same account.</p>
+
+      <h2>Why full access is the wrong default</h2>
+
+      <p>When everyone has the same access level, you lose two things simultaneously: accountability and security.</p>
+
+      <p><strong>Accountability</strong> means knowing who made a change. If any of six people could have updated the menu price, you can't investigate an error — you can only shrug and roll it back. An audit trail only works when actions are tied to specific, authenticated users. Without that, you have a log of events with no authorship.</p>
+
+      <p><strong>Security</strong> means limiting the surface area of what can go wrong. A barista doesn't need to see cost data or manage suppliers. A delivery rider doesn't need to see table-level order history. Every permission that exists but shouldn't be there is a risk that doesn't need to exist — and a potential point of failure when someone makes an honest mistake, or an intentional one.</p>
+
+      <h2>The roles that matter in a café</h2>
+
+      <p>A typical multi-outlet café operation has five meaningful access levels. These aren't bureaucratic distinctions — they're the difference between a system where everyone can do their job clearly and a system where anyone can accidentally (or deliberately) cause problems beyond their remit.</p>
+
+      <p><strong>Owner / Director.</strong> Full access to everything: financials, all-outlet analytics, system configuration, user management. Typically one or two people. This is the only role that should be able to add or remove other users.</p>
+
+      <p><strong>Outlet Manager.</strong> Full access within their assigned outlet. Can manage the menu, staff scheduling, orders, and inventory for their location. No visibility into other outlets' financial data or performance. This is the most important boundary in a multi-outlet setup — an outlet manager should run their outlet, not the whole group.</p>
+
+      <p><strong>Floor Staff / Barista.</strong> Can see the order queue, update order status, and view their current shift. Cannot change prices, modify the menu, access inventory levels, or see other outlets. Their screen should show exactly what they need to serve a table well — nothing more.</p>
+
+      <p><strong>Kitchen.</strong> Order queue view only. What's been ordered, what's pending, what's done, what's been called. No administrative access of any kind. The KDS (kitchen display) is the whole job.</p>
+
+      <p><strong>Inventory / Procurement.</strong> Can view and update stock levels across assigned outlets, log deliveries, create purchase orders, and see par-level alerts. No access to financial reporting, staff management, or order history. They manage supplies, not operations.</p>
+
+      <h2>What happens when someone leaves</h2>
+
+      <p>One of the most underappreciated benefits of proper access control is offboarding. When a staff member with a named account leaves, you deactivate that account. Done. Their access is gone.</p>
+
+      <p>When six people share one admin account, and two of those people leave, the account password either has to be changed and redistributed to everyone still using it — or it doesn't, and former employees retain access indefinitely because nobody wants to deal with the disruption of a password reset.</p>
+
+      <blockquote><p>The cleanest security audit is the one you never have to do because access was right-sized from the start.</p></blockquote>
+
+      <h2>What good access control looks like in practice</h2>
+
+      <p>The best access control systems are invisible when they're working correctly. Each person sees exactly what they need to do their job well. They don't encounter walls for things they reasonably need. They can't make changes that aren't theirs to make.</p>
+
+      <p>The owner has full visibility — not because they're watching, but because the data is there when they need it. When something goes wrong and an investigation starts, the answer isn't "I don't know." The log shows who changed what, when, from which device. That's not surveillance. That's accountability — and for a well-run operation, it's what makes trust possible at scale.</p>
+
+      <div class="callout"><p><strong>EatOps includes role-based access</strong> across all modules — with outlet-level isolation, named accounts for every team member, and a full audit trail. Deactivate departing staff in seconds.</p></div>
+
+      <div class="post-end-bar">
+        <a href="../blog.html" class="back-link">← Back to journal</a>
+        <a href="../contact.html" class="btn-flame">Book a demo <span class="ar">→</span></a>
+      </div>
+
+    </article>
+  </div>
+</section>
+
+<div class="marquee marquee-quiet" aria-hidden="true">
+  <div class="marquee-track">
+    <span>EST. 2026&nbsp;✦&nbsp;MODERN HOSPITALITY OS&nbsp;✦&nbsp;MADE WITH CARE IN INDIA&nbsp;✦&nbsp;EVERY OUTLET, ONE SYSTEM&nbsp;✦&nbsp;</span>
+    <span>EST. 2026&nbsp;✦&nbsp;MODERN HOSPITALITY OS&nbsp;✦&nbsp;MADE WITH CARE IN INDIA&nbsp;✦&nbsp;EVERY OUTLET, ONE SYSTEM&nbsp;✦&nbsp;</span>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container footer-top reveal">
+    <div class="footer-brand">
+      <a href="../index.html" class="logo">Eat<span>Ops</span></a>
+      <p class="footer-tag">The operating system for modern hospitality. Menu, loyalty, inventory and team ops — built for the cafés that give a damn.</p>
+      <div class="footer-social">
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg class="icon" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v6h-4v-6a2 2 0 0 0-4 0v6h-4V8.5h4V10"/><rect x="2" y="8.5" width="4" height="11.5"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="https://x.com" target="_blank" rel="noopener" aria-label="X"><svg class="icon" viewBox="0 0 24 24"><path d="M4 4l7.2 9.2L4.3 20H7l5.4-6 4.6 6H21l-7.6-9.7L20 4h-2.6l-4.7 5.2L8.7 4z" fill="currentColor" stroke="none"/></svg></a>
+        <a href="mailto:hello@eatops.co" aria-label="Email"><svg class="icon" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 7l9 6 9-6"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col"><span class="footer-h">Product</span><a href="../features.html">Features</a><a href="../pricing.html">Pricing</a><a href="../blog.html">Blog</a></div>
+      <div class="footer-col"><span class="footer-h">Company</span><a href="../about.html">About</a><a href="../contact.html">Contact</a><a href="../index.html#trust">Why EatOps</a></div>
+      <div class="footer-col"><span class="footer-h">Get started</span><a href="../contact.html" class="footer-cta-link">Book a demo →</a><a href="mailto:hello@eatops.co">hello@eatops.co</a></div>
+    </div>
+  </div>
+  <div class="footer-wordmark reveal" aria-hidden="true">EatOps</div>
+  <div class="container footer-bottom">
+    <span>© 2026 EatOps. All rights reserved.</span>
+    <svg class="footer-sprig" viewBox="0 0 64 22" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M4 11h56"/><path d="M32 11c-3.5-4-7.5-4-9.5-2 2 3.2 6 3 9.5 2z"/><path d="M32 11c3.5-4 7.5-4 9.5-2-2 3.2-6 3-9.5 2z"/><path d="M23 11c-2.6-3-5.5-3-7-1.6M41 11c2.6-3 5.5-3 7-1.6"/>
+    </svg>
+    <span>Built by <a href="https://crestify.co" target="_blank" rel="noopener">Crestify ↗</a></span>
+  </div>
+  <a class="back-top" href="#top"><span class="arc">↑</span> Back to top</a>
+</footer>
+
+<script src="../assets/site.js" defer></script>
+</body>
+</html>
