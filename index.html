@@ -218,8 +218,10 @@ a{color:inherit;text-decoration:none;}
    ============================================================ */
 .hero{
   position:relative;z-index:2;
-  min-height:100svh;display:flex;align-items:center;
-  padding:150px 0 90px;
+  /* deliberately short of a full viewport so the client names peek above the
+     fold rather than sitting exactly on it */
+  min-height:88svh;display:flex;align-items:center;
+  padding:146px 0 60px;
 }
 .hero-in{max-width:900px;}
 .eyebrow{
@@ -236,19 +238,15 @@ a{color:inherit;text-decoration:none;}
 }
 /* Sans display: emphasis reads through weight contrast, not italic. */
 .hero h1 em{font-style:normal;font-weight:400;color:var(--signal);}
-/* The plain-language answer to "what is this", set apart from the atmosphere
-   above and below it. Nobody should have to infer the category. */
+/* The single supporting line. The headline does the hook, the story does the
+   detail — this only has to say plainly what EatOps is. */
 .hero-what{
   font-size:clamp(16px,2vw,19px);line-height:1.6;
-  color:rgba(251,250,246,.92);max-width:54ch;
+  color:rgba(251,250,246,.92);max-width:46ch;
   padding-left:17px;border-left:2px solid var(--signal);
-  margin-bottom:22px;
+  margin-bottom:40px;
 }
 .hero-what b{color:var(--signal);font-weight:600;}
-.hero-sub{
-  font-size:clamp(15px,1.8vw,17px);line-height:1.65;
-  color:rgba(251,250,246,.6);max-width:56ch;margin-bottom:38px;
-}
 
 /* ── trust strip — who we're already building with ── */
 .trust{position:relative;z-index:2;padding:0 0 76px;}
@@ -1035,15 +1033,14 @@ a.trust-name:hover{color:var(--signal);}
     <div class="hero-in">
       <div class="eyebrow">A story in two parts</div>
       <h1>Every café has <em>two versions</em> of itself.</h1>
-      <p class="hero-what"><b>EatOps is the operating system for new cafés</b> — digital menu, live orders, loyalty, inventory, team and equipment, built custom and connected from day one.</p>
-      <p class="hero-sub">The one that opens on paper, guesswork and a group chat. And the one that runs on EatOps. Same room, same coffee, same people — two completely different days.</p>
+      <p class="hero-what"><b>EatOps is the operating system for new cafés</b> — menu, orders, loyalty and stock, connected from day one.</p>
       <div class="hero-acts">
         <a href="contact.html" class="btn btn-sig">Book a free demo →</a>
         <a href="#story" class="btn btn-line">Watch the day unfold</a>
       </div>
       <div class="hero-cue">
         <span class="cue-rail"></span>
-        <span>Scroll — 06:40, the café opens</span>
+        <span>06:40 — the café opens</span>
       </div>
     </div>
   </div>
