@@ -14,8 +14,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Variable weight ranges rather than 14 discrete cuts: 5 font files instead of 14. -->
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..700&family=Space+Grotesk:wght@400..700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<!-- Variable ranges rather than discrete cuts, so this stays 4 font files. -->
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Grotesk:wght@400..700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 /* ============================================================
@@ -49,7 +49,7 @@
 
   --ease:cubic-bezier(0.16,1,0.3,1);
 
-  --fd:'Fraunces',Georgia,serif;
+  --fd:'Bricolage Grotesque',system-ui,sans-serif;
   --fb:'Space Grotesk',system-ui,sans-serif;
   --fm:'Space Mono',ui-monospace,monospace;
 
@@ -229,12 +229,13 @@ a{color:inherit;text-decoration:none;}
 }
 .eyebrow::before{content:'';width:26px;height:1px;background:var(--signal);flex-shrink:0;}
 .hero h1{
-  font-family:var(--fd);font-weight:900;
+  font-family:var(--fd);font-weight:800;
   font-size:clamp(42px,8.2vw,104px);
-  line-height:.96;letter-spacing:-.035em;
+  line-height:.98;letter-spacing:-.04em;
   text-wrap:balance;margin-bottom:32px;
 }
-.hero h1 em{font-style:italic;font-weight:700;color:var(--signal);}
+/* Sans display: emphasis reads through weight contrast, not italic. */
+.hero h1 em{font-style:normal;font-weight:400;color:var(--signal);}
 /* The plain-language answer to "what is this", set apart from the atmosphere
    above and below it. Nobody should have to infer the category. */
 .hero-what{
@@ -341,15 +342,16 @@ a.trust-name:hover{color:var(--signal);}
 .act-num b{color:var(--rust);font-weight:400;}
 .act.after .act-num b{color:var(--signal);}
 .act h2{
-  font-family:var(--fd);font-weight:900;
+  font-family:var(--fd);font-weight:800;
   font-size:clamp(58px,15vw,190px);
-  line-height:.82;letter-spacing:-.045em;margin-bottom:26px;
+  line-height:.86;letter-spacing:-.055em;margin-bottom:26px;
 }
 .act.before h2{color:rgba(251,250,246,.9);}
 .act.after h2{color:var(--signal);}
 .act p{
-  font-family:var(--fd);font-style:italic;font-weight:400;
+  font-family:var(--fd);font-weight:400;
   font-size:clamp(19px,2.7vw,32px);line-height:1.4;
+  letter-spacing:-.015em;
   color:rgba(251,250,246,.6);max-width:26ch;
 }
 
@@ -425,7 +427,7 @@ a.trust-name:hover{color:var(--signal);}
   line-height:1.02;letter-spacing:-.035em;
   margin-bottom:28px;text-wrap:balance;
 }
-.turn h2 em{font-style:italic;color:var(--signal);}
+.turn h2 em{font-style:normal;font-weight:400;color:var(--signal);}
 .turn p{
   font-size:clamp(16px,2vw,19px);line-height:1.7;
   color:rgba(251,250,246,.66);max-width:52ch;margin:0 auto;
@@ -455,7 +457,7 @@ a.trust-name:hover{color:var(--signal);}
   font-size:clamp(30px,5vw,58px);line-height:1.04;
   letter-spacing:-.032em;margin-bottom:16px;text-wrap:balance;
 }
-.flow-head h2 em{font-style:italic;color:var(--signal);}
+.flow-head h2 em{font-style:normal;font-weight:400;color:var(--signal);}
 .flow-head p{font-size:17px;line-height:1.7;color:rgba(251,250,246,.66);max-width:52ch;}
 
 .flow-rail{display:flex;align-items:flex-start;justify-content:center;gap:0;}
@@ -676,7 +678,7 @@ a.trust-name:hover{color:var(--signal);}
   line-height:1.04;letter-spacing:-.032em;
   margin-bottom:18px;text-wrap:balance;color:var(--chalk);
 }
-.sec-head h2 em{font-style:italic;color:var(--flame);}
+.sec-head h2 em{font-style:normal;font-weight:400;color:var(--flame);}
 .sec-head p{font-size:17px;line-height:1.7;color:var(--smoke);max-width:56ch;}
 
 /* — Modules — */
@@ -773,7 +775,7 @@ a.trust-name:hover{color:var(--signal);}
   font-size:clamp(32px,5.6vw,68px);line-height:1.03;
   letter-spacing:-.035em;margin-bottom:20px;text-wrap:balance;
 }
-.cta-in h2 em{font-style:italic;color:#EDF3E4;}
+.cta-in h2 em{font-style:normal;font-weight:400;color:#EDF3E4;}
 .cta-in p{font-size:17px;line-height:1.7;color:rgba(255,255,255,.85);max-width:50ch;margin:0 auto 38px;}
 .cta-acts{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
 .btn-void{background:var(--void);color:var(--ember);}
@@ -856,7 +858,7 @@ a.trust-name:hover{color:var(--signal);}
   font-family:var(--fd);font-weight:800;font-size:clamp(23px,5vw,31px);
   line-height:1.1;letter-spacing:-.025em;margin-bottom:13px;
 }
-.pop-box h3 em{font-style:italic;color:var(--flame);}
+.pop-box h3 em{font-style:normal;font-weight:400;color:var(--flame);}
 .pop-box > p{font-size:15px;line-height:1.65;color:var(--smoke);margin-bottom:26px;}
 .pop-skip{
   display:block;margin-top:14px;font-family:var(--fm);font-size:10px;

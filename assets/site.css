@@ -17,7 +17,7 @@
   --forest:#262A20;    /* dark band */
 
   --ease:cubic-bezier(0.16, 1, 0.3, 1);
-  --f-display:'Fraunces', Georgia, serif;
+  --f-display:'Bricolage Grotesque', system-ui, sans-serif;
   --f-body:'Space Grotesk', sans-serif;
   --f-mono:'Space Mono', monospace;
 }
@@ -39,7 +39,9 @@ img{max-width:100%;display:block;}
 .eyebrow{font-family:var(--f-mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--label);font-weight:400;}
 .eyebrow::before{content:"";display:inline-block;width:18px;height:1px;background:var(--flame);vertical-align:middle;margin-right:10px;margin-bottom:3px;}
 .flame{color:var(--flame);}
-.ital{font-style:italic;font-weight:600;}
+/* Heading emphasis. The display face is a sans with no true italic, so this
+   reads through weight contrast against the 800 of h1-h4 rather than slant. */
+.ital{font-style:normal;font-weight:400;}
 h1,h2,h3,h4{font-family:var(--f-display);font-weight:800;letter-spacing:-0.5px;line-height:1.04;}
 
 /* ---------- buttons ---------- */
