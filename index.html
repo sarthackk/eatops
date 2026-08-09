@@ -263,8 +263,8 @@ a{color:inherit;text-decoration:none;}
 
 /* — Act title cards — */
 .act{
-  min-height:92svh;display:flex;flex-direction:column;
-  justify-content:center;padding:80px 0;
+  min-height:64svh;display:flex;flex-direction:column;
+  justify-content:center;padding:52px 0;
 }
 .act-num{
   font-family:var(--fm);font-size:10px;letter-spacing:.28em;
@@ -287,8 +287,8 @@ a{color:inherit;text-decoration:none;}
 
 /* — Beats — */
 .beat{
-  min-height:88svh;display:flex;align-items:center;
-  padding:60px 0;
+  min-height:64svh;display:flex;align-items:center;
+  padding:34px 0;
 }
 .beat-card{
   max-width:560px;
@@ -343,8 +343,8 @@ a{color:inherit;text-decoration:none;}
 
 /* — The turn — */
 .turn{
-  min-height:105svh;display:flex;align-items:center;
-  justify-content:center;text-align:center;padding:90px 0;
+  min-height:78svh;display:flex;align-items:center;
+  justify-content:center;text-align:center;padding:64px 0;
 }
 .turn-in{max-width:800px;}
 .turn-kicker{
@@ -828,11 +828,11 @@ a{color:inherit;text-decoration:none;}
 
   .hero{padding:126px 0 64px;min-height:auto;}
   /* Story trimmed on phones — the same beats, less thumb distance */
-  .act{min-height:62svh;}
-  .beat{min-height:auto;padding:21vh 0;}
+  .act{min-height:48svh;}
+  .beat{min-height:auto;padding:12vh 0;}
   .beat.right{justify-content:flex-start;}
   .beat-card{padding:28px 24px;border-radius:15px;}
-  .turn{min-height:68svh;}
+  .turn{min-height:54svh;}
   .ledger-row{grid-template-columns:1fr;}
   .ledger-row.head{display:none;}
   .ledger-row > div{padding:16px 20px;}
@@ -1705,9 +1705,12 @@ var ease  = function(t){ return t<0.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2; };
   }
   /* jars / stock on the shelves */
   var matJar = M(0x4B4945, 0x9A7F58, {roughness:0.4, metalness:0.1});
+  var jars = [];
   for(var jr=0; jr<11; jr++){
     var row = Math.floor(jr/4), col = jr % 4;
-    cyl(0.22,0.22,0.62, matJar, -1.25 + col*0.83, 1.1 + row*1.25, 0, 12, shelf);
+    var jm = cyl(0.22,0.22,0.62, matJar, -1.25 + col*0.83, 1.1 + row*1.25, 0, 12, shelf);
+    jm.userData.y0 = jm.position.y;
+    jars.push(jm);
   }
   shelf.position.set(10.4, 0, -7.2);
   shelf.rotation.y = -0.16;
@@ -1858,7 +1861,110 @@ var ease  = function(t){ return t<0.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2; };
   window.addEventListener('resize', resize);
   resize();
 
-  var progress = 0;   /* 0 = fully before, 1 = fully after */
+  /* ============================================================
+     THE TIMELINE
+
+     Ten keyframes, one per story moment. Every channel is interpolated
+     continuously between them, so there is no stretch of scroll where the
+     café sits still — the old build only animated across a narrow band in
+     the middle and froze either side of it.
+
+     The three camera setups in Act II are byte-identical to their Act I
+     counterparts: 06:40 is the same push onto the counter, 11:20 the same
+     wide, 15:05 the same look at the shelf. Same shot, transformed café —
+     the visual rhyme of the repeated timestamps.
+     ============================================================ */
+  var SHOT_COUNTER = [11.0, 6.4, 13.5], TGT_COUNTER = [-4.5, 2.4, -4.6];
+  var SHOT_ROOM    = [ 8.5, 8.0, 11.0], TGT_ROOM    = [ 0.0, 1.8, -1.0];
+  var SHOT_SHELF   = [15.5, 7.6,  5.0], TGT_SHELF   = [ 9.4, 3.6, -6.4];
+
+  var KEYS = [
+    /* opening — the room, cold and whole */
+    {warm:0, chaos:0.25, conn:0,    night:0.35, stock:1.00, flow:0.2,
+     cam:[18.0,13.5,20.0], tgt:[0,1.3,0]},
+    /* 06:40 · the board rewritten from memory */
+    {warm:0, chaos:0.50, conn:0,    night:0.18, stock:0.90, flow:0.2,
+     cam:SHOT_COUNTER, tgt:TGT_COUNTER},
+    /* 11:20 · the rush — chaos peaks */
+    {warm:0, chaos:1.00, conn:0,    night:0.00, stock:0.60, flow:0.2,
+     cam:SHOT_ROOM, tgt:TGT_ROOM},
+    /* 15:05 · the shelf, emptied out */
+    {warm:0, chaos:0.85, conn:0,    night:0.05, stock:0.04, flow:0.2,
+     cam:SHOT_SHELF, tgt:TGT_SHELF},
+    /* 22:15 · night, pulled back, unresolved */
+    {warm:0, chaos:0.75, conn:0,    night:1.00, stock:0.10, flow:0.2,
+     cam:[19.5,15.0,21.5], tgt:[0,1.0,0]},
+    /* the turn */
+    {warm:0.55,chaos:0.20,conn:0.40,night:0.50, stock:0.55, flow:0.7,
+     cam:[16.0,12.0,18.0], tgt:[0,1.6,0]},
+    /* "After." — the reveal: wide on the whole transformed room */
+    {warm:1, chaos:0,    conn:0.62, night:0.12, stock:1.00, flow:1.0,
+     cam:[14.6,10.2,17.0], tgt:[0,1.7,-0.5]},
+    /* 06:40 · same shot, warm, connections waking */
+    {warm:1, chaos:0,    conn:0.78, night:0.14, stock:1.00, flow:0.9,
+     cam:SHOT_COUNTER, tgt:TGT_COUNTER},
+    /* 11:20 · same wide, the rush handled — data flying */
+    {warm:1, chaos:0,    conn:1.00, night:0.00, stock:1.00, flow:2.4,
+     cam:SHOT_ROOM, tgt:TGT_ROOM},
+    /* 15:05 · same shelf, stocked and watched */
+    {warm:1, chaos:0,    conn:1.00, night:0.05, stock:1.00, flow:1.3,
+     cam:SHOT_SHELF, tgt:TGT_SHELF},
+    /* 22:15 · warm night, the day closes itself */
+    {warm:1, chaos:0,    conn:1.00, night:0.78, stock:1.00, flow:0.6,
+     cam:[18.0,13.0,19.5], tgt:[0,1.3,0]}
+  ];
+
+  /* Keyframe times come from where the beats actually sit in the document,
+     so re-tuning the CSS rhythm can never desynchronise the café from the
+     copy it is illustrating. */
+  var beforeBeats = document.querySelectorAll('.beat.before-beat');
+  var afterBeats  = document.querySelectorAll('.beat.after-beat');
+  var turnEl      = document.getElementById('turn');
+  var actTwoEl    = document.querySelector('.act.after');
+
+  function buildTimeline(){
+    var top  = window.scrollY + storyEl.getBoundingClientRect().top;
+    var span = storyEl.offsetHeight - H;
+    if(span <= 0){ KEYS.forEach(function(k,i){ k.t = i/(KEYS.length-1); }); return; }
+    /* when is this element centred in the viewport? */
+    function at(el){
+      var mid = window.scrollY + el.getBoundingClientRect().top + el.offsetHeight/2;
+      return clamp((mid - H/2 - top)/span, 0, 1);
+    }
+    KEYS[0].t = 0;
+    for(var i=0;i<4;i++) KEYS[1+i].t = at(beforeBeats[i]);
+    KEYS[5].t = at(turnEl);
+    KEYS[6].t = at(actTwoEl);
+    for(var j=0;j<4;j++) KEYS[7+j].t = at(afterBeats[j]);
+    KEYS[10].t = 1;
+    /* keep strictly increasing so the sampler can't divide by zero */
+    for(var k=1;k<KEYS.length;k++){
+      if(KEYS[k].t <= KEYS[k-1].t) KEYS[k].t = Math.min(1, KEYS[k-1].t + 0.001);
+    }
+  }
+
+  var S = {warm:0,chaos:0.25,conn:0,night:0.35,stock:1,flow:0.2,
+           cam:[18,13.5,20], tgt:[0,1.3,0]};
+
+  function sampleAt(t){
+    var i = 0;
+    while(i < KEYS.length-2 && t > KEYS[i+1].t) i++;
+    var a = KEYS[i], b = KEYS[i+1];
+    var u = ease(clamp((t - a.t)/(b.t - a.t), 0, 1));
+    S.warm  = lerp(a.warm ,b.warm ,u);
+    S.chaos = lerp(a.chaos,b.chaos,u);
+    S.conn  = lerp(a.conn ,b.conn ,u);
+    S.night = lerp(a.night,b.night,u);
+    S.stock = lerp(a.stock,b.stock,u);
+    S.flow  = lerp(a.flow ,b.flow ,u);
+    for(var c=0;c<3;c++){
+      S.cam[c] = lerp(a.cam[c], b.cam[c], u);
+      S.tgt[c] = lerp(a.tgt[c], b.tgt[c], u);
+    }
+    return S;
+  }
+
+  var progress = 0;   /* raw 0..1 position through the story */
   var visible = false;
   var mx = 0, my = 0, tmx = 0, tmy = 0;
 
@@ -1872,24 +1978,16 @@ var ease  = function(t){ return t<0.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2; };
   function readScroll(){
     var r = storyEl.getBoundingClientRect();
     var span = r.height - H;
-    var p = span > 0 ? clamp(-r.top / span, 0, 1) : 0;
+    progress = span > 0 ? clamp(-r.top / span, 0, 1) : 0;
 
-    /* before ─── turn ─── after */
-    var t;
-    if(p < 0.40)      t = 0;
-    else if(p > 0.60) t = 1;
-    else              t = ease((p - 0.40) / 0.20);
-    progress = t;
-
-    /* stage lives from the top of the page until the story ends */
-    var top = r.top, bottom = r.bottom;
-    var on = bottom > H * 0.15 && top < H;
-    /* also show it behind the hero */
-    if(top > 0 && top < H * 2) on = true;
+    var on = r.bottom > H * 0.15 && r.top < H;
+    if(r.top > 0 && r.top < H * 2) on = true;
     visible = on || (window.scrollY < H * 1.2);
     stageEl.classList.toggle('live', visible);
   }
   window.addEventListener('scroll', readScroll, {passive:true});
+  window.addEventListener('resize', buildTimeline);
+  buildTimeline();
   readScroll();
 
   /* ============================================================
@@ -1900,62 +1998,86 @@ var ease  = function(t){ return t<0.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2; };
   var clock = new THREE.Clock();
 
   function step(dt, el){
-    /* smooth the scroll-driven value so scrubbing never snaps */
-    shown = REDUCED ? progress : lerp(shown, progress, 1 - Math.pow(0.001, dt));
-    var t = shown;
+    /* smooth the scroll position so scrubbing never snaps */
+    shown = REDUCED ? progress : lerp(shown, progress, 1 - Math.pow(0.0015, dt));
+    var s = sampleAt(shown);
+    var warm = s.warm, night = s.night;
 
-    /* materials */
+    /* materials follow warmth; night pulls everything down toward the dark */
+    var dim = lerp(1, 0.42, night);
     for(var i=0;i<morphMats.length;i++){
       var m = morphMats[i];
-      m.color.copy(m.userData.a).lerp(m.userData.b, t);
-      if(m.userData.emA) m.emissive.copy(m.userData.emA).lerp(m.userData.emB, t);
+      m.color.copy(m.userData.a).lerp(m.userData.b, warm).multiplyScalar(dim);
+      if(m.userData.emA){
+        /* the window: black at night before, lamp-lit at night after */
+        m.emissive.copy(m.userData.emA).lerp(m.userData.emB, warm)
+                  .multiplyScalar(lerp(1, 0.15 + warm * 0.85, night));
+      }
     }
-    matBulb.color.copy(LC.bulbA).lerp(LC.bulbB, t);
+    matBulb.color.copy(LC.bulbA).lerp(LC.bulbB, warm)
+                 .multiplyScalar(lerp(0.75, 1.5, night));
 
     /* lights */
-    amb.color.copy(LC.ambA).lerp(LC.ambB, t);
-    amb.intensity = lerp(0.38, 0.30, t);
-    key.color.copy(LC.keyA).lerp(LC.keyB, t);
-    key.intensity = lerp(0.32, 0.46, t);
-    win.color.copy(LC.winA).lerp(LC.winB, t);
-    win.intensity = lerp(0.45, 1.35, t);
-    pend.color.copy(LC.penA).lerp(LC.penB, t);
-    pend.intensity = lerp(0.32, 1.05, t);
-    sig.intensity = t * 0.7;
+    amb.color.copy(LC.ambA).lerp(LC.ambB, warm);
+    amb.intensity = lerp(0.38, 0.30, warm) * lerp(1, 0.30, night);
+    key.color.copy(LC.keyA).lerp(LC.keyB, warm);
+    key.intensity = lerp(0.32, 0.46, warm) * lerp(1, 0.12, night);
+    win.color.copy(LC.winA).lerp(LC.winB, warm);
+    win.intensity = lerp(0.45, 1.35, warm) * lerp(1, 0.20, night);
+    /* the pendants carry the room once the daylight goes */
+    pend.color.copy(LC.penA).lerp(LC.penB, warm);
+    pend.intensity = lerp(0.32, 1.05, warm) * lerp(1, 1.75, night);
+    sig.intensity = s.conn * 0.75;
 
-    /* chaos clears out */
-    var chaos = 1 - clamp(t * 1.35, 0, 1);
+    /* paper clutter — thickest at the 11:20 rush, gone after the turn */
+    var chaos = s.chaos;
     for(var p2=0; p2<papers.length; p2++){
       var pm = papers[p2];
-      pm.material.opacity = chaos;
-      pm.visible = chaos > 0.01;
+      var live = clamp(chaos * 1.25 - p2 * 0.012, 0, 1);
+      pm.material.opacity = live;
+      pm.visible = live > 0.01;
       if(!REDUCED){
-        pm.rotation.y += pm.userData.spin * dt * 0.4;
-        pm.position.y = pm.userData.y0 + Math.sin(el * 0.7 + p2) * 0.05 - (1 - chaos) * 2.2;
+        /* the busier it gets, the more they stir */
+        pm.rotation.y += pm.userData.spin * dt * (0.4 + chaos * 1.6);
+        pm.position.y = pm.userData.y0
+                      + Math.sin(el * (0.7 + chaos) + p2) * (0.05 + chaos * 0.13)
+                      - (1 - live) * 2.2;
       }
-      pm.scale.setScalar(0.4 + chaos * 0.6);
-    }
-    for(var a2=0; a2<alerts.length; a2++){
-      var al = alerts[a2];
-      var beat = 0.5 + Math.sin(el * 3.4 + a2 * 1.3) * 0.5;
-      al.material.opacity = chaos * (0.45 + beat * 0.55);
-      al.visible = chaos > 0.01;
-      al.rotation.y += dt * 1.1;
-      al.position.y = al.userData.y0 + Math.sin(el * 1.6 + a2) * 0.14;
-      al.scale.setScalar(0.7 + beat * 0.35);
+      pm.scale.setScalar(0.4 + live * 0.6);
     }
 
-    /* connections come alive */
-    var conn = clamp((t - 0.35) / 0.65, 0, 1);
-    for(var l2=0; l2<links.length; l2++){
-      links[l2].mat.opacity = conn * 0.55;
+    /* alerts — the storage marker flares as the shelf empties */
+    for(var a2=0; a2<alerts.length; a2++){
+      var al = alerts[a2];
+      var urgency = a2 === 0 ? (1 - s.stock) : 0;   /* alerts[0] sits over storage */
+      var rate = 3.4 + urgency * 6;
+      var beat = 0.5 + Math.sin(el * rate + a2 * 1.3) * 0.5;
+      var live2 = clamp(chaos * 1.2, 0, 1) * (0.35 + urgency * 0.65 + (a2 ? 0.3 : 0));
+      al.material.opacity = clamp(live2 * (0.45 + beat * 0.55), 0, 1);
+      al.visible = al.material.opacity > 0.01;
+      al.rotation.y += dt * (1.1 + urgency * 2.4);
+      al.position.y = al.userData.y0 + Math.sin(el * 1.6 + a2) * 0.14;
+      al.scale.setScalar((0.7 + beat * 0.35) * (1 + urgency * 0.5));
     }
+
+    /* the shelf physically empties out, then refills */
+    for(var jn=0; jn<jars.length; jn++){
+      var jm2 = jars[jn];
+      var fill = clamp(s.stock * jars.length - jn, 0, 1);
+      jm2.scale.y = 0.06 + fill * 0.94;
+      jm2.position.y = jm2.userData.y0 - (1 - fill) * 0.29;
+      jm2.visible = fill > 0.02;
+    }
+
+    /* connections */
+    var conn = s.conn;
+    for(var l2=0; l2<links.length; l2++) links[l2].mat.opacity = conn * 0.55;
     for(var u=0; u<pulses.length; u++){
       var pu = pulses[u];
       pu.mesh.material.opacity = conn;
       pu.mesh.visible = conn > 0.02;
       if(conn > 0.02){
-        pu.t = (pu.t + pu.speed * dt) % 1;
+        pu.t = (pu.t + pu.speed * s.flow * dt * 3.2) % 1;
         var idx = pu.t * (pu.pts.length - 1);
         var i0 = Math.floor(idx), i1 = Math.min(i0 + 1, pu.pts.length - 1);
         tmpA.copy(pu.pts[i0]); tmpB.copy(pu.pts[i1]);
@@ -1964,18 +2086,19 @@ var ease  = function(t){ return t<0.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2; };
       }
     }
 
-    /* camera + café motion */
+    /* café rotation + camera, both driven straight off the timeline */
     mx = lerp(mx, tmx, 0.05);
     my = lerp(my, tmy, 0.05);
     var drift = REDUCED ? 0 : Math.sin(el * 0.18) * 0.02;
-    cafe.rotation.y = lerp(-0.14, 0.16, t) + drift + mx * 0.09;
+    cafe.rotation.y = lerp(-0.14, 0.16, shown) + drift + mx * 0.09;
 
-    var camX = lerp(17.5, 15.0, t);
-    var camY = lerp(13.5, 11.2, t);
-    var camZ = lerp(19.5, 18.0, t);
-    var wide = isPhone ? 1.30 : 1;
-    camera.position.set(camX * wide, camY * wide - my * 1.6, camZ * wide);
-    camera.lookAt(0, lerp(1.2, 1.8, t), lerp(0.4, -0.4, t));
+    var wide = isPhone ? 1.34 : 1;
+    camera.position.set(
+      s.cam[0] * wide,
+      s.cam[1] * wide - my * 1.6,
+      s.cam[2] * wide
+    );
+    camera.lookAt(s.tgt[0], s.tgt[1], s.tgt[2]);
 
     renderer.render(scene, camera);
   }
@@ -1997,13 +2120,14 @@ var ease  = function(t){ return t<0.5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2; };
   if(DEBUG){
     window.__eo = {
       renderer:renderer, scene:scene, camera:camera, cafe:cafe,
-      /* force a frame at a given transformation value (0 = before, 1 = after) */
+      keys:KEYS, sample:sampleAt,
+      /* force a frame at a given position through the story (0..1) */
       draw:function(p){
         if(typeof p === 'number'){ progress = p; shown = p; }
         visible = true;
         stageEl.classList.add('live');
         step(0.016, performance.now() / 1000);
-        return shown;
+        return {at:shown, state:JSON.parse(JSON.stringify(S))};
       }
     };
   }
