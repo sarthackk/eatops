@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How it works — EatOps</title>
+<meta name="description" content="Watch EatOps end to end. What the platform is in 24 seconds, then the Super QR Menu in full: a guest scans the code on the table, orders from their phone, and it lands at your counter with the table number on it.">
+<meta name="theme-color" content="#FBFAF6">
+
+<meta property="og:title" content="How it works — EatOps">
+<meta property="og:description" content="One code on the table. The menu opens in a second. The order lands at your counter.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.eatops.co/how-it-works.html">
+<meta property="og:image" content="https://www.eatops.co/assets/media/qr-menu-poster.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Space+Grotesk:wght@400..700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+
+<style>
+/* ── shared player chrome ── */
+.vid-meta{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:14px;flex-wrap:wrap;margin-top:15px;
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--label);
+}
+.vid-meta b{color:var(--flame);font-weight:400;}
+.vid-live{display:flex;align-items:center;gap:8px;}
+.vid-live i{width:5px;height:5px;border-radius:50%;background:var(--flame);display:block;flex-shrink:0;}
+
+/* ── portrait explainer: phone-shaped, beside copy ── */
+.intro-grid{
+  display:grid;grid-template-columns:1fr 330px;
+  gap:clamp(32px,6vw,72px);align-items:center;max-width:1000px;margin:0 auto;
+}
+.intro-copy h2{
+  font-size:clamp(28px,4vw,46px);line-height:1.06;
+  letter-spacing:-.03em;margin-bottom:18px;
+}
+.intro-copy p{font-size:17px;line-height:1.7;color:var(--smoke);margin-bottom:26px;max-width:46ch;}
+.intro-points{list-style:none;display:flex;flex-direction:column;gap:11px;}
+.intro-points li{
+  display:flex;gap:11px;align-items:flex-start;
+  font-size:15px;line-height:1.6;color:var(--chalk);
+}
+.intro-points li::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--flame);flex-shrink:0;margin-top:8px;
+}
+.phone-frame{
+  position:relative;width:100%;max-width:330px;margin:0 auto;
+  aspect-ratio:9/16;background:#12170D;
+  border:8px solid #1E2417;border-radius:34px;overflow:hidden;
+  box-shadow:0 34px 70px -28px rgba(43,43,40,.5);
+}
+.phone-frame video{width:100%;height:100%;display:block;object-fit:cover;background:#12170D;}
+
+/* ── landscape demo ── */
+.demo-wrap{max-width:1000px;margin:0 auto;}
+.demo-frame{
+  position:relative;aspect-ratio:16/9;width:100%;
+  background:#12170D;border:1px solid var(--graphite);
+  border-radius:16px;overflow:hidden;
+  box-shadow:0 30px 70px -32px rgba(43,43,40,.45);
+}
+.demo-frame video{width:100%;height:100%;display:block;object-fit:cover;background:#12170D;}
+
+/* ── numbered walkthrough ── */
+.walk{display:flex;flex-direction:column;max-width:880px;margin:0 auto;}
+.walk-row{
+  display:grid;grid-template-columns:86px 1fr;gap:26px;
+  padding:30px 0;border-bottom:1px solid var(--graphite);
+}
+.walk-row:last-child{border-bottom:none;}
+.walk-n{
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.13em;
+  color:var(--flame);padding-top:6px;
+}
+.walk-body h3{
+  font-family:var(--f-display);font-weight:700;
+  font-size:clamp(20px,2.6vw,26px);letter-spacing:-.02em;
+  color:var(--chalk);margin-bottom:8px;
+}
+.walk-body p{font-size:15.5px;line-height:1.7;color:var(--smoke);max-width:56ch;}
+
+/* ── café-side band ── */
+.counter-band{background:var(--forest);color:var(--void);}
+.counter-band .section-head h2{color:var(--void);}
+.counter-band .section-head p{color:rgba(251,250,246,.66);}
+.counter-band .eyebrow{color:#A6C47C;}
+.counter-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1000px;margin:0 auto;}
+.counter-card{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);
+  border-radius:13px;padding:28px 24px;
+}
+.counter-card h4{
+  font-family:var(--f-display);font-weight:700;font-size:17px;
+  color:var(--void);margin-bottom:9px;letter-spacing:-.01em;
+}
+.counter-card p{font-size:14px;line-height:1.65;color:rgba(251,250,246,.62);}
+
+.end-note{
+  text-align:center;margin-top:20px;
+  font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--label);
+}
+.end-note a{color:var(--flame);}
+
+@media(max-width:860px){
+  .intro-grid{grid-template-columns:1fr;gap:38px;}
+  .intro-copy p{max-width:none;}
+  .phone-frame{max-width:290px;border-width:7px;border-radius:30px;}
+  .walk-row{grid-template-columns:1fr;gap:10px;padding:24px 0;}
+  .walk-n{padding-top:0;}
+  .counter-grid{grid-template-columns:1fr;}
+  .demo-frame{border-radius:12px;}
+}
+</style>
+</head>
+<body id="top">
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<nav class="nav" id="nav">
+  <div class="container">
+    <a href="index.html" class="logo">Eat<span>Ops</span></a>
+    <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <div class="nav-links">
+      <a href="how-it-works.html" class="active">How it works</a>
+      <a href="features.html">Features</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <a href="contact.html" class="btn-flame">Book a demo</a>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="page-grid"></div>
+  <div class="page-glow"></div>
+  <div class="container">
+    <span class="eyebrow">How it works</span>
+    <h1>One code on the table.<br>The rest <span class="flame ital">takes care of itself.</span></h1>
+    <p class="lead">Two short films. The first is what EatOps is, in under half a minute. The second follows a single order all the way from a guest sitting down to it landing at your counter.</p>
+  </div>
+</header>
+
+<!-- ============ 01 · WHAT IT IS (portrait explainer) ============ -->
+<section class="section" style="padding-top:24px;">
+  <div class="container">
+    <div class="intro-grid">
+      <div class="intro-copy reveal">
+        <span class="eyebrow">Start here</span>
+        <h2>What EatOps is, in <span class="flame ital">24 seconds.</span></h2>
+        <p>Six modules that run one café and actually talk to each other — the menu your guests order from, the screen your kitchen works off, and the number you read at the end of the night.</p>
+        <ul class="intro-points">
+          <li>Digital menu and ordering, live on your tables</li>
+          <li>Orders, loyalty, inventory, team and equipment in one place</li>
+          <li>Built custom around how your café already runs</li>
+          <li>₹0 commission on every order, forever</li>
+        </ul>
+      </div>
+      <div class="reveal">
+        <div class="phone-frame">
+          <video
+            controls muted playsinline preload="none"
+            poster="assets/media/eatops-explainer-poster.jpg"
+            aria-label="EatOps overview: the platform and its six modules">
+            <source src="assets/media/eatops-explainer.mp4" type="video/mp4">
+            Your browser cannot play this video.
+            <a href="assets/media/eatops-explainer.mp4">Download it instead</a>.
+          </video>
+        </div>
+        <div class="vid-meta" style="justify-content:center;">
+          <span>24 seconds &nbsp;·&nbsp; no sound</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 · THE QR MENU (landscape demo) ============ -->
+<section class="section counter-band" style="padding-bottom:70px;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The Super QR Menu</span>
+      <h2>Now watch one order, end to end.</h2>
+      <p>This is the part your guests touch. Nobody downloads anything, nobody signs up, and nobody waits to catch your eye.</p>
+    </div>
+    <div class="demo-wrap reveal">
+      <div class="demo-frame">
+        <video
+          controls muted playsinline preload="none"
+          poster="assets/media/qr-menu-poster.jpg"
+          aria-label="Super QR Menu walkthrough: scanning the code, browsing the menu, and placing an order">
+          <source src="assets/media/qr-menu-demo.mp4" type="video/mp4">
+          Your browser cannot play this video.
+          <a href="assets/media/qr-menu-demo.mp4">Download it instead</a>.
+        </video>
+      </div>
+      <div class="vid-meta">
+        <span class="vid-live" style="color:rgba(251,250,246,.55);"><i></i>Super QR Menu &nbsp;·&nbsp; <b style="color:#A6C47C;">live at Sidewalk</b></span>
+        <span style="color:rgba(251,250,246,.45);">34 seconds &nbsp;·&nbsp; no sound</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 · THE FIVE STEPS ============ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The guest's side</span>
+      <h2>Five steps, and none of them are <span class="flame ital">your job.</span></h2>
+      <p>From the moment someone sits down to the moment the order reaches you, your team doesn't have to do a thing.</p>
+    </div>
+
+    <div class="walk">
+      <div class="walk-row reveal">
+        <div class="walk-n">01 — SITS DOWN</div>
+        <div class="walk-body">
+          <h3>One code on the table.</h3>
+          <p>No paper menu to wait for, no app to download. They point a camera at the square on the table — the one thing everybody already knows how to do.</p>
+        </div>
+      </div>
+      <div class="walk-row reveal">
+        <div class="walk-n">02 — IT OPENS</div>
+        <div class="walk-body">
+          <h3>The menu is just there.</h3>
+          <p>It opens straight in the browser in about a second. Nothing to install, no sign-up, no account, no "continue with Google".</p>
+        </div>
+      </div>
+      <div class="walk-row reveal">
+        <div class="walk-n">03 — BROWSES</div>
+        <div class="walk-body">
+          <h3>They see what they're ordering.</h3>
+          <p>A photo, a description and the price on every item. One tap filters to vegan, gluten free or spicy — so nobody has to ask, and nobody has to remember the answer.</p>
+        </div>
+      </div>
+      <div class="walk-row reveal">
+        <div class="walk-n">04 — ORDERS</div>
+        <div class="walk-body">
+          <h3>Ordering without getting up.</h3>
+          <p>Tap to add, tap to send. Anything you've run out of shows as sold out before they pick it, so the disappointment never happens.</p>
+        </div>
+      </div>
+      <div class="walk-row reveal">
+        <div class="walk-n">05 — CONFIRMED</div>
+        <div class="walk-body">
+          <h3>Confirmed on their screen.</h3>
+          <p>They see exactly what they ordered and what it costs, and can add to it from the same menu whenever they like — without flagging anyone down.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 · YOUR SIDE ============ -->
+<section class="section counter-band">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Your side</span>
+      <h2>Meanwhile, at the counter.</h2>
+      <p>The same order that took a guest four taps arrives with you already sorted, already priced, already counted against your stock.</p>
+    </div>
+    <div class="counter-grid">
+      <div class="counter-card reveal">
+        <h4>It arrives with the table on it</h4>
+        <p>No shouting across the pass, no guessing which order belongs to which table. The ticket lands the second it's placed.</p>
+      </div>
+      <div class="counter-card reveal">
+        <h4>Stock counts itself down</h4>
+        <p>Every order subtracts what it used. When something runs low you hear about it days early, not when a guest asks for it.</p>
+      </div>
+      <div class="counter-card reveal">
+        <h4>The menu stays honest</h4>
+        <p>Mark something sold out once and it greys out on every phone in the room. No reprinting, no crossing things off.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 · THE REST ============ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">And the rest of it</span>
+      <h2>The menu is one of <span class="flame ital">six.</span></h2>
+      <p>Orders, loyalty, inventory, team chat and equipment run on the same system and talk to each other — which is the entire point. The QR menu is just the part your guests can see.</p>
+    </div>
+    <div style="text-align:center;">
+      <a href="features.html" class="btn-flame">See all six modules <span class="ar">→</span></a>
+      <p class="end-note">or <a href="index.html#story">watch a café's whole day</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>Want this on your tables?</h2>
+    <p>Tell us how your café runs today and we'll set the Super QR Menu up around it — branded to you, with your menu already in it.</p>
+    <a href="contact.html" class="btn-void">Book a free demo <span class="ar">→</span></a>
+  </div>
+</section>
+
+<div class="marquee marquee-quiet" aria-hidden="true">
+  <div class="marquee-track">
+    <span>NO APP TO DOWNLOAD&nbsp;✦&nbsp;NO QUEUE AT THE COUNTER&nbsp;✦&nbsp;ALWAYS UP TO DATE&nbsp;✦&nbsp;₹0 COMMISSIONS&nbsp;✦&nbsp;</span>
+    <span>NO APP TO DOWNLOAD&nbsp;✦&nbsp;NO QUEUE AT THE COUNTER&nbsp;✦&nbsp;ALWAYS UP TO DATE&nbsp;✦&nbsp;₹0 COMMISSIONS&nbsp;✦&nbsp;</span>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container footer-top reveal">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">Eat<span>Ops</span></a>
+      <p class="footer-tag">The operating system for new cafés. Menu, orders, loyalty, inventory, team and equipment — built custom, connected from day one.</p>
+      <div class="footer-social">
+        <a href="https://wa.me/917992028684" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="icon" viewBox="0 0 24 24"><path d="M3 21l1.7-5A8.5 8.5 0 1 1 8 19.3z"/><path d="M8.6 9.2c.4-.1.6 0 .8.4l.7 1.5c.1.3.1.5-.1.7l-.4.5c-.2.2-.2.4-.1.6.5 1 1.3 1.7 2.3 2.2.2.1.4.1.6-.1l.5-.5c.2-.2.4-.2.7-.1l1.5.7c.4.2.5.4.4.8-.2.9-1 1.5-2 1.5-3 0-6.5-3.5-6.5-6.5 0-1 .6-1.8 1.6-1.7z"/></svg></a>
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><svg class="icon" viewBox="0 0 24 24"><rect x="2.5" y="2.5" width="19" height="19" rx="5.5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn"><svg class="icon" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v6h-4v-6a2 2 0 0 0-4 0v6h-4V8.5h4V10"/><rect x="2" y="8.5" width="4" height="11.5"/><circle cx="4" cy="4" r="2"/></svg></a>
+        <a href="mailto:team@crestify.co" aria-label="Email"><svg class="icon" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 7l9 6 9-6"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col"><span class="footer-h">Product</span><a href="how-it-works.html">How it works</a><a href="features.html">Features</a><a href="pricing.html">Pricing</a><a href="https://sidewalkcafe.co/qr" target="_blank" rel="noopener">Super QR Menu ↗</a></div>
+      <div class="footer-col"><span class="footer-h">Company</span><a href="about.html">About</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a><a href="index.html#clients">Our work</a></div>
+      <div class="footer-col"><span class="footer-h">Get started</span><a href="contact.html" class="footer-cta-link">Book a demo →</a><a href="mailto:team@crestify.co">team@crestify.co</a><a href="tel:+917992028684">+91 79920 28684</a></div>
+    </div>
+  </div>
+  <div class="footer-wordmark reveal" aria-hidden="true">EatOps</div>
+  <div class="container footer-bottom">
+    <span>© 2026 EatOps. All rights reserved.</span>
+    <svg class="footer-sprig" viewBox="0 0 64 22" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M4 11h56"/><path d="M32 11c-3.5-4-7.5-4-9.5-2 2 3.2 6 3 9.5 2z"/><path d="M32 11c3.5-4 7.5-4 9.5-2-2 3.2-6 3-9.5 2z"/><path d="M23 11c-2.6-3-5.5-3-7-1.6M41 11c2.6-3 5.5-3 7-1.6"/>
+    </svg>
+    <span>A <a href="https://crestify.co" target="_blank" rel="noopener">Crestify</a> product</span>
+  </div>
+  <a class="back-top" href="#top"><span class="arc">↑</span> Back to top</a>
+</footer>
+
+<script src="assets/site.js" defer></script>
+<script>
+/* Safety net: .reveal ships at opacity:0 and is undone by an IntersectionObserver
+   in site.js. Both players and every step on this page sit inside .reveal
+   elements, so if that observer never fires the page would read as empty.
+   This sweeps on scroll as well as on load, so nothing can stay invisible. */
+(function(){
+  var pending = [].slice.call(document.querySelectorAll('.reveal'));
+  function sweep(){
+    for(var i = pending.length - 1; i >= 0; i--){
+      var r = pending[i].getBoundingClientRect();
+      if(r.top < window.innerHeight * 1.25 && r.bottom > -200){
+        pending[i].classList.add('in');
+        pending.splice(i, 1);
+      }
+    }
+  }
+  window.addEventListener('scroll', sweep, {passive:true});
+  window.addEventListener('resize', sweep, {passive:true});
+  sweep();
+})();
+</script>
+</body>
+</html>
