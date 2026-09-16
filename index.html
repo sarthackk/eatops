@@ -301,6 +301,25 @@ a.trust-name:hover{color:var(--signal);}
   letter-spacing:.06em;color:var(--flame);transition:color .2s;
 }
 .client-link:hover{color:var(--ember);}
+/* ── tour — the product on a real device, in a real café ── */
+.tour-sec{background:var(--oat);}
+.tour-wrap{max-width:1020px;margin:0 auto;}
+.tour-frame{
+  position:relative;aspect-ratio:16/9;width:100%;
+  background:#12170D;border:1px solid rgba(43,43,40,.14);
+  border-radius:16px;overflow:hidden;
+  box-shadow:0 34px 80px -34px rgba(43,43,40,.5);
+}
+.tour-frame video{width:100%;height:100%;display:block;object-fit:cover;background:#12170D;}
+.tour-meta{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:14px;flex-wrap:wrap;margin-top:15px;
+  font-family:var(--fm);font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--label);
+}
+.tour-meta a{color:var(--flame);}
+@media(max-width:768px){.tour-frame{border-radius:12px;}}
+
 .clients-note{
   margin-top:30px;font-size:14.5px;line-height:1.65;
   color:var(--smoke);max-width:62ch;
@@ -1502,6 +1521,33 @@ a.trust-name:hover{color:var(--signal);}
       </div>
 
       <p class="clients-note"><b>Kapai's inventory and loyalty apps, and Sidewalk's loyalty app, go live in the next few weeks.</b> If you want your café built next, now is the point to talk — we only take on a handful at a time.</p>
+    </div>
+  </section>
+
+  <!-- The product, running -->
+  <section class="sec tour-sec" id="tour">
+    <div class="container">
+      <div class="sec-head">
+        <div class="eyebrow dark">See it running</div>
+        <h2>The whole thing, <em>on a real device.</em></h2>
+        <p>Thirty seconds on a café counter — the menu, an order going through, and everything that sits behind it.</p>
+      </div>
+      <div class="tour-wrap">
+        <div class="tour-frame">
+          <video
+            controls muted playsinline preload="none"
+            poster="assets/media/eatops-tour-poster.jpg"
+            aria-label="EatOps running on a tablet: the menu, an order end to end, and the six modules">
+            <source src="assets/media/eatops-tour.mp4" type="video/mp4">
+            Your browser cannot play this video.
+            <a href="assets/media/eatops-tour.mp4">Download it instead</a>.
+          </video>
+        </div>
+        <p class="tour-meta">
+          <span>29 seconds &nbsp;·&nbsp; no sound</span>
+          <span><a href="how-it-works.html">Or watch the full walkthrough →</a></span>
+        </p>
+      </div>
     </div>
   </section>
 
